@@ -8,10 +8,12 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.hackzurich.hackzurich22.R
 import com.hackzurich.hackzurich22.base.MainActivity
 
+@ExperimentalPagerApi
 @ExperimentalComposeUiApi
 @ExperimentalPermissionsApi
 @ExperimentalMaterialApi
@@ -31,7 +33,7 @@ class NotificationActivity: Activity() {
             .setContentText("Did you know it takes 1700 litres to make...")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
+        //.setAutoCancel(true)
 
 
         with(NotificationManagerCompat.from(this)) {

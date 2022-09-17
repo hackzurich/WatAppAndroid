@@ -13,6 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.hackzurich.hackzurich22.HomeScreen
 import com.hackzurich.hackzurich22.Page2Screen
 import com.hackzurich.hackzurich22.R
@@ -29,6 +30,7 @@ sealed class Screen(val route: String, @StringRes val resourceId: Int, @Drawable
     object Assessment : Screen("assessment", R.string.assessment)
 }
 
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
 fun AppNavigation(

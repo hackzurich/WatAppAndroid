@@ -29,11 +29,13 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.hackzurich.hackzurich22.navigation.AppNavigation
 import com.hackzurich.hackzurich22.navigation.Screen
 import com.hackzurich.hackzurich22.ui.theme.Font
 import com.hackzurich.hackzurich22.ui.theme.HackZurich22Theme
 
+@ExperimentalPagerApi
 @ExperimentalComposeUiApi
 @ExperimentalMaterialApi
 @Composable
@@ -79,7 +81,10 @@ fun App() {
                 }
 
                 if (openDialog) {
-                    QuizDialog(changeOpenDialog)
+                    QuizDialog(changeOpenDialog) {
+                        openDialog = false
+                        navController.navigate(Screen.Challenge.route)
+                    }
 
                 }
             }
@@ -89,7 +94,7 @@ fun App() {
 
 @ExperimentalComposeUiApi
 @Composable
-private fun QuizDialog(changeOpenDialog: (Boolean) -> Unit) {
+private fun QuizDialog(changeOpenDialog: (Boolean) -> Unit, whatCanIDo: () -> Unit) {
     Dialog(
         properties = DialogProperties(usePlatformDefaultWidth = false),
         onDismissRequest = { changeOpenDialog(false) }
@@ -135,7 +140,7 @@ private fun QuizDialog(changeOpenDialog: (Boolean) -> Unit) {
                     Text("CLOSE", style = TextStyle(color = Color.Black))
                 }
                 Spacer(modifier = Modifier.width(8.dp))
-                Button(onClick = {}) {
+                Button(onClick = whatCanIDo) {
                     Text("WHAT CAN I DO?")
                 }
             }
