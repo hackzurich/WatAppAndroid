@@ -1,5 +1,6 @@
 package com.hackzurich.hackzurich22.challenge
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
@@ -7,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -24,6 +26,12 @@ import com.hackzurich.hackzurich22.ui.theme.Primary
 fun ChallengeResultScreen(finish: () -> Unit) {
     Column() {
         Header()
+        Image(
+            painter = painterResource(id = R.drawable.tea),
+            contentDescription = null,
+            modifier = Modifier.fillMaxWidth(),
+            contentScale = ContentScale.FillWidth
+        )
         Text(buildAnnotatedString {
             withStyle(style = SpanStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)) {
                 append("You saved 1700 litres!\n")
