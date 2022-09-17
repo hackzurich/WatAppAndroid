@@ -3,7 +3,6 @@ package com.hackzurich.hackzurich22
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
-import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -24,7 +23,7 @@ import com.hackzurich.hackzurich22.ui.theme.HackZurich22Theme
 fun App() {
     val items = listOf(
         Screen.Welcome,
-        Screen.Page1,
+        Screen.PickChallenge,
         Screen.Page2,
     )
 
