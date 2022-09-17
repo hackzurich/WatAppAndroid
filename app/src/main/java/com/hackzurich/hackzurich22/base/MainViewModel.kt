@@ -11,7 +11,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val dataStore: DataStore<Preferences>): ViewModel() {
+class MainViewModel @Inject constructor(private val dataStore: DataStore<Preferences>) :
+    ViewModel() {
 
     val shouldShowAssessment = dataStore.data.map { preferences ->
         !(preferences[DataStoreKeys.ASSESSMENT_SHOWN] ?: false)

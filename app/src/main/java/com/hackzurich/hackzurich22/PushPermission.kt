@@ -19,7 +19,7 @@ import com.hackzurich.hackzurich22.ui.theme.HackZurich22Theme
 @ExperimentalPermissionsApi
 @Composable
 fun PushPermission() {
-    if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
         val cameraPermissionState = rememberPermissionState(Manifest.permission.POST_NOTIFICATIONS)
         if (cameraPermissionState.status.isGranted) {
             Text("Camera permission Granted")

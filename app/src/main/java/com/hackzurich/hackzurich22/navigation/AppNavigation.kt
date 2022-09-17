@@ -24,7 +24,11 @@ import com.hackzurich.hackzurich22.challenge.ChallengeResultScreen
 import com.hackzurich.hackzurich22.challenge.ChallengeScreen
 import com.hackzurich.hackzurich22.challenge.PickChallengeScreen
 
-sealed class Screen(val route: String, @StringRes val resourceId: Int, @DrawableRes val iconId: Int? = null) {
+sealed class Screen(
+    val route: String,
+    @StringRes val resourceId: Int,
+    @DrawableRes val iconId: Int? = null
+) {
     object Home : Screen("home", R.string.home, R.drawable.ic_home)
     object Quiz : Screen("quiz", R.string.pick_challenge, R.drawable.ic_round_quiz)
     object WaterBank : Screen("waterbank", R.string.waterbank, R.drawable.ic_waterbank)
