@@ -17,7 +17,7 @@ import com.hackzurich.hackzurich22.base.MainActivity
 @ExperimentalComposeUiApi
 @ExperimentalPermissionsApi
 @ExperimentalMaterialApi
-class NotificationActivity: Activity() {
+class NotificationActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,8 @@ class NotificationActivity: Activity() {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             putExtra("pushtype", "")
         }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         val builder = NotificationCompat.Builder(this, "mychannel")
             .setSmallIcon(R.drawable.logo)
@@ -33,7 +34,7 @@ class NotificationActivity: Activity() {
             .setContentText("Did you know it takes 1700 litres to make...")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
-        //.setAutoCancel(true)
+            .setAutoCancel(true)
 
 
         with(NotificationManagerCompat.from(this)) {
