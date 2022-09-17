@@ -1,4 +1,4 @@
-package com.hackzurich.hackzurich22
+package com.hackzurich.hackzurich22.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.ExperimentalMaterialApi
@@ -12,16 +12,20 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.hackzurich.hackzurich22.HomeScreen
+import com.hackzurich.hackzurich22.Page2Screen
+import com.hackzurich.hackzurich22.R
 import com.hackzurich.hackzurich22.assessment.AssessmentScreen
+import com.hackzurich.hackzurich22.base.MainViewModel
 import com.hackzurich.hackzurich22.challenge.ChallengeScreen
 import com.hackzurich.hackzurich22.challenge.PickChallengeScreen
 
 sealed class Screen(val route: String, @StringRes val resourceId: Int) {
-    object Welcome : Screen("welcome", R.string.welcome)
+    object Home : Screen("home", R.string.home)
     object PickChallenge : Screen("pick_challenge", R.string.pick_challenge)
     object Page2 : Screen("page2", R.string.page2)
-    object Challenge: Screen("challenge", R.string.challenge)
-    object Assessment: Screen("assessment", R.string.assessment)
+    object Challenge : Screen("challenge", R.string.challenge)
+    object Assessment : Screen("assessment", R.string.assessment)
 }
 
 @ExperimentalMaterialApi
@@ -44,10 +48,10 @@ fun AppNavigation(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = Screen.Welcome.route
+        startDestination = Screen.Home.route
     ) {
-        composable(Screen.Welcome.route) {
-            WelcomeScreen()
+        composable(Screen.Home.route) {
+            HomeScreen()
         }
         composable(Screen.PickChallenge.route) {
             PickChallengeScreen(

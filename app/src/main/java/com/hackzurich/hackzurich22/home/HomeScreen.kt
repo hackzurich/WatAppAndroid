@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun WelcomeScreen() {
+fun HomeScreen() {
     Text("Welcome to HackZurich 2022")
 }
 
 @Preview
 @Composable
 private fun WelcomeScreenPreview() {
-    WelcomeScreen()
+    HomeScreen()
 }

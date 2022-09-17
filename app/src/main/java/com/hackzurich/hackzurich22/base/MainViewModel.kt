@@ -1,4 +1,4 @@
-package com.hackzurich.hackzurich22
+package com.hackzurich.hackzurich22.base
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

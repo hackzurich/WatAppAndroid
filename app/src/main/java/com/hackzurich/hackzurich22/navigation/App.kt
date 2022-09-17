@@ -17,12 +17,15 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.hackzurich.hackzurich22.navigation.AppNavigation
+import com.hackzurich.hackzurich22.navigation.Screen
 import com.hackzurich.hackzurich22.ui.theme.HackZurich22Theme
 
+@ExperimentalMaterialApi
 @Composable
 fun App() {
     val items = listOf(
-        Screen.Welcome,
+        Screen.Home,
         Screen.PickChallenge,
         Screen.Page2,
     )
