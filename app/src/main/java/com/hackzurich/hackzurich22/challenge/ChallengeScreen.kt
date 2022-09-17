@@ -65,7 +65,7 @@ fun ChallengeScreen(answerChallenge: () -> Unit) {
                                 modifier = Modifier.fillMaxWidth(),
                                 contentAlignment = Alignment.Center
                             ) {
-                                OutlinedButton(onClick = { /*TODO*/ }) {
+                                OutlinedButton(onClick = answerChallenge) {
                                     Text("SOUNDS GOOD!")
                                 }
                             }
@@ -95,7 +95,7 @@ fun ChallengeScreen(answerChallenge: () -> Unit) {
                                 modifier = Modifier.fillMaxWidth(),
                                 contentAlignment = Alignment.Center
                             ) {
-                                OutlinedButton(onClick = { /*TODO*/ }) {
+                                OutlinedButton(onClick = answerChallenge) {
                                     Text("SOUNDS GOOD!")
                                 }
                             }

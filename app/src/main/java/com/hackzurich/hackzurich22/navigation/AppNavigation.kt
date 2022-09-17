@@ -19,6 +19,7 @@ import com.hackzurich.hackzurich22.Page2Screen
 import com.hackzurich.hackzurich22.R
 import com.hackzurich.hackzurich22.assessment.AssessmentScreen
 import com.hackzurich.hackzurich22.base.MainViewModel
+import com.hackzurich.hackzurich22.challenge.ChallengeResultScreen
 import com.hackzurich.hackzurich22.challenge.ChallengeScreen
 import com.hackzurich.hackzurich22.challenge.PickChallengeScreen
 
@@ -28,6 +29,7 @@ sealed class Screen(val route: String, @StringRes val resourceId: Int, @Drawable
     object WaterBank : Screen("waterbank", R.string.waterbank, R.drawable.ic_waterbank)
     object Challenge : Screen("challenge", R.string.challenge)
     object Assessment : Screen("assessment", R.string.assessment)
+    object ChallengeResult : Screen("challenge_result", R.string.challenge_result)
 }
 
 @ExperimentalPagerApi
@@ -68,13 +70,19 @@ fun AppNavigation(
         }
         composable(Screen.Challenge.route) {
             ChallengeScreen {
-                navController.popBackStack()
-                makeBottomBarVisible(true)
+                navController.navigate(Screen.ChallengeResult.route)
             }
         }
         composable(Screen.Assessment.route) {
             AssessmentScreen {
                 viewModel.didShowAssessment()
+                navController.popBackStack()
+                makeBottomBarVisible(true)
+            }
+        }
+        composable(Screen.ChallengeResult.route) {
+            ChallengeResultScreen {
+                navController.popBackStack()
                 navController.popBackStack()
                 makeBottomBarVisible(true)
             }
