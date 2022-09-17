@@ -30,6 +30,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.hackzurich.hackzurich22.navigation.AppNavigation
 import com.hackzurich.hackzurich22.navigation.Screen
 import com.hackzurich.hackzurich22.ui.theme.Font
@@ -38,6 +39,7 @@ import com.hackzurich.hackzurich22.ui.theme.HackZurich22Theme
 @ExperimentalPagerApi
 @ExperimentalComposeUiApi
 @ExperimentalMaterialApi
+@ExperimentalPermissionsApi
 @Composable
 fun App() {
     val items = listOf(

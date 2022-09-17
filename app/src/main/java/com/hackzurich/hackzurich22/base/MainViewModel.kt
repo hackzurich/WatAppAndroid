@@ -23,4 +23,15 @@ class MainViewModel @Inject constructor(private val dataStore: DataStore<Prefere
             settings[DataStoreKeys.ASSESSMENT_SHOWN] = true
         }
     }
+
+    val shouldAskForLocationPermission = dataStore.data.map { preferences ->
+        !(preferences[DataStoreKeys.LOCATION_PERMISSION_ASKED] ?: false)
+    }
+
+    fun didAskLocationPermission() = viewModelScope.launch {
+        dataStore.edit { settings ->
+            settings[DataStoreKeys.LOCATION_PERMISSION_ASKED] = true
+        }
+    }
+
 }

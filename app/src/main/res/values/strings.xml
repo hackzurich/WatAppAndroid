@@ -8,4 +8,5 @@
     <string name="waterbank">Challenge Me</string>
     <string name="notification">notification</string>
     <string name="challenge_result">Challenge result</string>
+    <string name="location_permission">Location Permission</string>
 </resources>

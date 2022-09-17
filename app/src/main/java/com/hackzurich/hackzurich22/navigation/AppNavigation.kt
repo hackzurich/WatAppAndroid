@@ -15,7 +15,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.hackzurich.hackzurich22.HomeScreen
+import com.hackzurich.hackzurich22.LocationPermissionScreen
 import com.hackzurich.hackzurich22.Page2Screen
 import com.hackzurich.hackzurich22.R
 import com.hackzurich.hackzurich22.assessment.AssessmentScreen
@@ -35,11 +37,13 @@ sealed class Screen(
     object Challenge : Screen("challenge", R.string.challenge)
     object Assessment : Screen("assessment", R.string.assessment)
     object ChallengeResult : Screen("challenge_result", R.string.challenge_result)
+    object LocationPermission : Screen("location_permission", R.string.location_permission)
 }
 
 @ExperimentalComposeUiApi
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
+@ExperimentalPermissionsApi
 @Composable
 fun AppNavigation(
     modifier: Modifier = Modifier,
@@ -48,10 +52,16 @@ fun AppNavigation(
     viewModel: MainViewModel = hiltViewModel()
 ) {
     val shouldShowAssessment by viewModel.shouldShowAssessment.collectAsState(initial = false)
+    val shouldAskForLocationPermission by viewModel.shouldAskForLocationPermission.collectAsState(
+        initial = false
+    )
 
-    LaunchedEffect(shouldShowAssessment) {
+    LaunchedEffect(shouldShowAssessment, shouldAskForLocationPermission) {
         if (shouldShowAssessment) {
             navController.navigate(Screen.Assessment.route)
+            makeBottomBarVisible(false)
+        } else if (shouldAskForLocationPermission) {
+            navController.navigate(Screen.LocationPermission.route)
             makeBottomBarVisible(false)
         }
     }
@@ -85,6 +95,13 @@ fun AppNavigation(
         composable(Screen.ChallengeResult.route) {
             ChallengeResultScreen {
                 navController.popBackStack()
+                navController.popBackStack()
+                makeBottomBarVisible(true)
+            }
+        }
+        composable(Screen.LocationPermission.route) {
+            LocationPermissionScreen {
+                viewModel.didAskLocationPermission()
                 navController.popBackStack()
                 makeBottomBarVisible(true)
             }

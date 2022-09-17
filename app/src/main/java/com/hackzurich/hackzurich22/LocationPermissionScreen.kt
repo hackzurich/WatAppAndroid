@@ -4,17 +4,27 @@ import android.Manifest
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.hackzurich.hackzurich22.components.Header
+import com.hackzurich.hackzurich22.ui.theme.Primary
 
 @ExperimentalPermissionsApi
 @Composable
-fun LocationPermissionScreen() {
+fun LocationPermissionScreen(done: () -> Unit) {
     val locationPermissionsState = rememberMultiplePermissionsState(
         listOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -22,41 +32,31 @@ fun LocationPermissionScreen() {
         )
     )
 
-    if (locationPermissionsState.allPermissionsGranted) {
-        Text("Thanks! I can access your exact location :D")
-    } else {
-        Column {
-            val allPermissionsRevoked =
-                locationPermissionsState.permissions.size ==
-                        locationPermissionsState.revokedPermissions.size
-
-            val textToShow = if (!allPermissionsRevoked) {
-                // If not all the permissions are revoked, it's because the user accepted the COARSE
-                // location permission, but not the FINE one.
-                "Yay! Thanks for letting me access your approximate location. " +
-                        "But you know what would be great? If you allow me to know where you " +
-                        "exactly are. Thank you!"
-            } else if (locationPermissionsState.shouldShowRationale) {
-                // Both location permissions have been denied
-                "Getting your exact location is important for this app. " +
-                        "Please grant us fine location. Thank you :D"
-            } else {
-                // First time the user sees this feature or the user doesn't want to be asked again
-                "This feature requires location permission"
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Header()
+        Text(buildAnnotatedString {
+            withStyle(style = SpanStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)) {
+                append("Give us access to your current location to help you ")
             }
-
-            val buttonText = if (!allPermissionsRevoked) {
-                "Allow precise location"
-            } else {
-                "Request permissions"
+            withStyle(
+                style = SpanStyle(
+                    color = Primary,
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            ) {
+                append("save even more water!")
             }
-
-            Text(text = textToShow)
-            Spacer(modifier = Modifier.height(8.dp))
-            Button(onClick = { locationPermissionsState.launchMultiplePermissionRequest() }) {
-                Text(buttonText)
-            }
+        }, modifier = Modifier.padding(16.dp))
+        Spacer(modifier = Modifier.height(100.dp))
+        Button(onClick = {
+            locationPermissionsState.launchMultiplePermissionRequest()
+            done()
+        }) {
+            Text("LET'S DO IT!")
+        }
+        TextButton(onClick = done) {
+            Text("I'd rather not..")
         }
     }
-
 }
