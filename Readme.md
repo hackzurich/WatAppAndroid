@@ -7,6 +7,9 @@ their behaviour.
 
 For more information about the project, go to Creatorspace [link here]
 
+### How to download it
+You can download the app from the [Releases Page](https://github.com/hackzurich/WatAppAndroid/releases). You might need to give your mobile browser permission to install apps from unknown sources.
+
 ### How to run it
 
 1. Download the source code
