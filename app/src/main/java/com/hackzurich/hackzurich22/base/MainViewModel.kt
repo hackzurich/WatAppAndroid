@@ -15,7 +15,7 @@ class MainViewModel @Inject constructor(private val dataStore: DataStore<Prefere
     ViewModel() {
 
     val shouldShowAssessment = dataStore.data.map { preferences ->
-        !(preferences[DataStoreKeys.ASSESSMENT_SHOWN] ?: false)
+        !(preferences[DataStoreKeys.ASSESSMENT_SHOWN] ?: true)
     }
 
     fun didShowAssessment() = viewModelScope.launch {
