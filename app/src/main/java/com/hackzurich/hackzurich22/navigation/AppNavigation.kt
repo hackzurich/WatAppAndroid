@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -32,6 +33,7 @@ sealed class Screen(val route: String, @StringRes val resourceId: Int, @Drawable
     object ChallengeResult : Screen("challenge_result", R.string.challenge_result)
 }
 
+@ExperimentalComposeUiApi
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
@@ -62,11 +64,7 @@ fun AppNavigation(
             Page2Screen()
         }
         composable(Screen.WaterBank.route) {
-            PickChallengeScreen(
-                showDialog = {
-
-                }
-            )
+            PickChallengeScreen()
         }
         composable(Screen.Challenge.route) {
             ChallengeScreen {
