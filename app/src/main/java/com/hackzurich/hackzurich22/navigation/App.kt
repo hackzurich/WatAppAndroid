@@ -15,7 +15,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -25,6 +31,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.hackzurich.hackzurich22.navigation.AppNavigation
 import com.hackzurich.hackzurich22.navigation.Screen
+import com.hackzurich.hackzurich22.ui.theme.Font
 import com.hackzurich.hackzurich22.ui.theme.HackZurich22Theme
 
 @ExperimentalComposeUiApi
@@ -89,6 +96,7 @@ private fun QuizDialog(changeOpenDialog: (Boolean) -> Unit) {
     ) {
         Column(
             modifier = Modifier
+                .padding(4.dp)
                 .background(Color.White)
                 .fillMaxWidth()
         ) {
@@ -101,8 +109,21 @@ private fun QuizDialog(changeOpenDialog: (Boolean) -> Unit) {
                     .fillMaxWidth()
             )
             Text(
+                buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            fontWeight = FontWeight.Bold,
+                            color = Font,
+                            fontSize = 14.sp
+                        )
+                    ) {
+                        append("Did you know it takes 1700 litres to make a 100g chocolate bar? ")
+                    }
+                    withStyle(style = SpanStyle(color = Font, fontSize = 14.sp)) {
+                        append("Most of the water is consumed by the cocoa tree that grows the cocoa beans, and many farms utilize the rain-heavy climates of rainforests to satisfy their thirst. But one third of all water consumption from the entire chocolate production process goes not to the trees but towards transportation and storage of the cocoa.")
+                    }
+                },
                 modifier = Modifier.padding(16.dp),
-                text = "Did you know it takes 1700 litres to make a 100g chocolate bar? Most of the water is consumed by the cocoa tree that grows the cocoa beans, and many farms utilize the rain-heavy climates of rainforests to satisfy their thirst. But one third of all water consumption from the entire chocolate production process goes not to the trees but towards transportation and storage of the cocoa."
             )
             Row(
                 horizontalArrangement = Arrangement.End,
@@ -111,10 +132,11 @@ private fun QuizDialog(changeOpenDialog: (Boolean) -> Unit) {
                     .padding(16.dp)
             ) {
                 TextButton(onClick = { changeOpenDialog(false) }) {
-                    Text("Close")
+                    Text("CLOSE", style = TextStyle(color = Color.Black))
                 }
+                Spacer(modifier = Modifier.width(8.dp))
                 Button(onClick = {}) {
-                    Text("What can I do?")
+                    Text("WHAT CAN I DO?")
                 }
             }
         }
