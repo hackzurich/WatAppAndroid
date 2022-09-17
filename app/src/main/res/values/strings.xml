@@ -5,7 +5,7 @@
     <string name="assessment">Assessment</string>
     <string name="pick_challenge">Pick challenge</string>
     <string name="home">Home</string>
-    <string name="waterbank">Water Bank</string>
+    <string name="waterbank">Challenge Me</string>
     <string name="notification">notification</string>
     <string name="challenge_result">Challenge result</string>
 </resources>

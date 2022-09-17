@@ -59,14 +59,14 @@ fun AppNavigation(
             HomeScreen()
         }
         composable(Screen.Quiz.route) {
+            Page2Screen()
+        }
+        composable(Screen.WaterBank.route) {
             PickChallengeScreen(
                 makeBottomBarVisible = {
                     makeBottomBarVisible(it)
                 }
             )
-        }
-        composable(Screen.WaterBank.route) {
-            Page2Screen()
         }
         composable(Screen.Challenge.route) {
             ChallengeScreen {
