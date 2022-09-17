@@ -1,6 +1,7 @@
 package com.hackzurich.hackzurich22
 
 import androidx.annotation.StringRes
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -23,7 +24,7 @@ sealed class Screen(val route: String, @StringRes val resourceId: Int) {
     object Assessment: Screen("assessment", R.string.assessment)
 }
 
-
+@ExperimentalMaterialApi
 @Composable
 fun AppNavigation(
     modifier: Modifier = Modifier,
@@ -49,7 +50,11 @@ fun AppNavigation(
             WelcomeScreen()
         }
         composable(Screen.PickChallenge.route) {
-            PickChallengeScreen()
+            PickChallengeScreen(
+                makeBottomBarVisible = {
+                    makeBottomBarVisible(it)
+                }
+            )
         }
         composable(Screen.Page2.route) {
             Page2Screen()
