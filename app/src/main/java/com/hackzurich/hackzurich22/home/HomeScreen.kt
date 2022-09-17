@@ -1,10 +1,14 @@
 package com.hackzurich.hackzurich22
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -14,12 +18,34 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.location.LocationServices
 import com.hackzurich.hackzurich22.components.Header
 import com.hackzurich.hackzurich22.ui.theme.Gray
 import com.hackzurich.hackzurich22.ui.theme.Primary
 
 @Composable
 fun HomeScreen() {
+    val context = LocalContext.current
+    LaunchedEffect(true) {
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            println("Whoops we don't handle that here")
+        } else {
+            LocationServices.getFusedLocationProviderClient(context).lastLocation.addOnSuccessListener {
+                //Todo: send location to the backend
+                println(it)
+            }
+        }
+
+    }
+
     Column() {
         Header()
         Text(buildAnnotatedString {
