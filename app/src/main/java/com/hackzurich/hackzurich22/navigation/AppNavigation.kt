@@ -63,8 +63,8 @@ fun AppNavigation(
         }
         composable(Screen.WaterBank.route) {
             PickChallengeScreen(
-                makeBottomBarVisible = {
-                    makeBottomBarVisible(it)
+                showDialog = {
+
                 }
             )
         }
