@@ -1,5 +1,6 @@
 package com.hackzurich.hackzurich22.navigation
 
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -20,10 +21,10 @@ import com.hackzurich.hackzurich22.base.MainViewModel
 import com.hackzurich.hackzurich22.challenge.ChallengeScreen
 import com.hackzurich.hackzurich22.challenge.PickChallengeScreen
 
-sealed class Screen(val route: String, @StringRes val resourceId: Int) {
-    object Home : Screen("home", R.string.home)
-    object PickChallenge : Screen("pick_challenge", R.string.pick_challenge)
-    object Page2 : Screen("page2", R.string.page2)
+sealed class Screen(val route: String, @StringRes val resourceId: Int, @DrawableRes val iconId: Int? = null) {
+    object Home : Screen("home", R.string.home, R.drawable.ic_home)
+    object Quiz : Screen("quiz", R.string.pick_challenge, R.drawable.ic_round_quiz)
+    object WaterBank : Screen("waterbank", R.string.waterbank, R.drawable.ic_waterbank)
     object Challenge : Screen("challenge", R.string.challenge)
     object Assessment : Screen("assessment", R.string.assessment)
 }
@@ -53,14 +54,14 @@ fun AppNavigation(
         composable(Screen.Home.route) {
             HomeScreen()
         }
-        composable(Screen.PickChallenge.route) {
+        composable(Screen.Quiz.route) {
             PickChallengeScreen(
                 makeBottomBarVisible = {
                     makeBottomBarVisible(it)
                 }
             )
         }
-        composable(Screen.Page2.route) {
+        composable(Screen.WaterBank.route) {
             Page2Screen()
         }
         composable(Screen.Challenge.route) {

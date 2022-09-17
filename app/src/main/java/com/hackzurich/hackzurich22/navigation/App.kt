@@ -6,11 +6,10 @@ import android.content.ContextWrapper
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -26,8 +25,8 @@ import com.hackzurich.hackzurich22.ui.theme.HackZurich22Theme
 fun App() {
     val items = listOf(
         Screen.Home,
-        Screen.PickChallenge,
-        Screen.Page2,
+        Screen.WaterBank,
+        Screen.Quiz,
     )
 
     var bottomBarVisible by remember { mutableStateOf(true) }
@@ -75,7 +74,7 @@ private fun BottomNav(
         val currentDestination = navBackStackEntry?.destination
         items.forEach { screen ->
             BottomNavigationItem(
-                icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
+                icon = { Icon(painterResource(id = screen.iconId ?: R.drawable.logo), contentDescription = null) },
                 label = { Text(stringResource(screen.resourceId)) },
                 selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                 onClick = {
